@@ -1,17 +1,21 @@
 <h2>Product List</h2>
 
-<section *ngFor="let product of products">
-  <a [title]="product.name + ' details'">
-    <h5>
-      {{ product.name }}
-    </h5>
-  </a> 
+<section *ngFor="let product of products; index as productId">
+  <h3>
+    <!-- dynamic title with property binding of built-in property of html tag -->
+    <a [title]="product.name + ' details'"
+      [routerLink]="['/products', productId]">
+      <h5>
+        {{ product.name }}
+      </h5>
+    </a>
+  </h3>
   <p *ngIf="product.description">
     Description: {{ product.description }}
   </p>
   <button (click)="share()">share</button>
-  <app-product-alerts 
-    [product]="product"
-    (notify)="onNotify()">
+  <!-- send `product` data from this template to child component with property binding -->
+  <!-- get `onNotify` method created in ts file for event that passed form child component -->
+  <app-product-alerts [product]="product" (notify)="onNotify()">
   </app-product-alerts>
 </section>

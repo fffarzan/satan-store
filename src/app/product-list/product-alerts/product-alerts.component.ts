@@ -8,8 +8,12 @@ import { Output, EventEmitter } from '@angular/core';
   styleUrls: ['./product-alerts.component.css']
 })
 export class ProductAlertsComponent implements OnInit {
+  /** get `product` value that passed form template of parent component with `@Input` decorator */
   @Input() product;
+
+  /** send `notify` event emitter to template of parent component with `@Output` decorator */
   @Output() notify = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
